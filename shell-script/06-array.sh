@@ -8,7 +8,3 @@ echo "Second fruit is: ${FRUITS[1]}"
 echo "Third Fruit is: ${FRUITS[2]}"
 
 echo "Total Fruits are: ${FRUITS[@]}"
-echo lsss
-echo $date
-echo $dateee
-echo ls
