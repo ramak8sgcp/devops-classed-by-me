@@ -11,30 +11,19 @@ fi
 VALIDATE(){
 
     echo "exit status: $1"
-    # if [ $1 -ne 0 ]
-    # then
-    #     echo "COMMAND is ... FAILED"
-    #     exit 1
-    # else
-    #     echo "COMMAND is ... SUCCESS"
-    # fi
+    
 }
 
-# dnf list installed git
-# if [ $? -ne 0 ]
-# then 
-#     echo "Git is  not installed , going to install it"
-#     dnf install git -y
-#     if [ $? -ne 0 ]
-#     then 
-#         echo "Git installation is not success... Check it"
-#         exit 1
-#     else
-#         echo "Git installation is success"
-#     fi
-# else    
-#     echo "Git is already installed, nothing to do"
-# fi
+dnf list installed git
+if [ $? -ne 0 ]
+then 
+    echo "Git is  not installed , going to install it"
+    dnf install git -y
+    VALIDATE $? 
+
+else    
+    echo "Git is already installed, nothing to do"
+fi
 
 # # mysql installation
 # dnf list installed mysql
@@ -52,3 +41,13 @@ VALIDATE(){
 # else    
 #     echo "mysql is already installed, nothing to do"
 # fi
+
+
+
+# if [ $1 -ne 0 ]
+    # then
+    #     echo "COMMAND is ... FAILED"
+    #     exit 1
+    # else
+    #     echo "COMMAND is ... SUCCESS"
+    # fi
