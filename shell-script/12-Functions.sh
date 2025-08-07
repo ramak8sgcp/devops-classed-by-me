@@ -31,22 +31,16 @@ else
     echo "Git is already installed, nothing to do"
 fi
 
-# # mysql installation
-# dnf list installed mysql
-# if [ $? -ne 0 ]
-# then 
-#     echo "mysql is  not installed , going to install it"
-#     dnf install mysql -y
-#     if [ $? -ne 0 ]
-#     then 
-#         echo "mysql installation is not success... Check it"
-#         exit 1
-#     else
-#         echo "mysql installation is success"
-#     fi
-# else    
-#     echo "mysql is already installed, nothing to do"
-# fi
+# mysql installation
+dnf list installed mysql
+if [ $? -ne 0 ]
+then 
+    echo "mysql is  not installed , going to install it"
+    dnf install mysql -y
+    VALIDATE $? "Installing Git"
+else    
+    echo "mysql is already installed, nothing to do"
+fi
 
 
 
