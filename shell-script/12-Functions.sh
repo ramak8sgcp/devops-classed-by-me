@@ -10,7 +10,13 @@ fi
 
 VALIDATE(){
 
-    echo "exit status: $1"
+   if [ $1 -ne 0 ]
+    then
+        echo "$2 is ... FAILED"
+        exit 1
+    else
+        echo "$2 is ... SUCCESS"
+    fi
     
 }
 
@@ -44,10 +50,3 @@ fi
 
 
 
-# if [ $1 -ne 0 ]
-    # then
-    #     echo "COMMAND is ... FAILED"
-    #     exit 1
-    # else
-    #     echo "COMMAND is ... SUCCESS"
-    # fi
