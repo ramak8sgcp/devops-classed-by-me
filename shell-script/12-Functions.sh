@@ -9,13 +9,15 @@ then
 fi
 
 VALIDATE(){
-    if [ $1 -ne 0 ]
-    then
-        echo "COMMAND is ... FAILED"
-        exit 1
-    else
-        echo "COMMAND is ... SUCCESS"
-    fi
+
+    echo "exit status: $1"
+    # if [ $1 -ne 0 ]
+    # then
+    #     echo "COMMAND is ... FAILED"
+    #     exit 1
+    # else
+    #     echo "COMMAND is ... SUCCESS"
+    # fi
 }
 
 # dnf list installed git
