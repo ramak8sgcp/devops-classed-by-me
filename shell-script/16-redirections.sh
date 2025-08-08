@@ -30,6 +30,11 @@ VALIDATE(){
     fi  
 }
 
+USAGE(){
+    echo "USAGE:: sh 16-redirection.sh package1 package2 package3 ...."
+    exit 1
+}
+
 CHECK_ROOT
 
 for package in $@
