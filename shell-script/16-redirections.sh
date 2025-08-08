@@ -3,7 +3,7 @@
 LOGS_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
-LOG_FILE=$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log
+LOG_FILE='$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log'
 mkdir -p $LOGS_FOLDER
 
 USERID=$(id -u)
@@ -34,6 +34,8 @@ USAGE(){
     echo "USAGE:: sh 16-redirections.sh package1 package2 package3 ...."
     exit 1
 }
+
+echo " script started executing at: $(date)" | tee -a $LOG_FILE
 
 CHECK_ROOT
 
