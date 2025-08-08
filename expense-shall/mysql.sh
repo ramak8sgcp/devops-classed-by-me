@@ -45,7 +45,7 @@ VALIDATE $? "Installing MySQL server"
 systemctl enable mysqld &>>$LOG_FILE
 VALIDATE $? "enable MySQL server"
 
-systemctl start mysqld 
+systemctl start mysqld &>>$LOG_FILE
 VALIDATE $? "start MySQL server"
 
  &>>$LOG_FILE
@@ -57,6 +57,6 @@ then
     mysql_secure_installation --set-root-pass ExpenseApp@1
     VALIDATE $? "Setting up root password"
 else
-    echo " MySQL root passord is already setup.. Skipping..."   
+    echo -e " MySQL root passord is already setup.. $Y Skipping...$N"  &>>$LOG_FILE 
 fi
 
