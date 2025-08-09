@@ -34,24 +34,38 @@ echo " script started executing at: $(date)" | tee -a $LOG_FILE
 
 CHECK_ROOT
 
-dnf install mysql-server -y &>>$LOG_FILE
-VALIDATE $? "Installing MySQL server"
+dnf module disable nodejs -y
+VALIDATE $? "Disable default nodejs"
 
-systemctl enable mysqld &>>$LOG_FILE
-VALIDATE $? "enable MySQL server"
+dnf module enable nodejs:20 -y
+VALIDATE $? "Enable nodejs:20"
 
-systemctl start mysqld &>>$LOG_FILE
-VALIDATE $? "start MySQL server"
+dnf install nodejs -y
+VALIDATE $? "Install nodejs"
 
- &>>$LOG_FILE
+id expense
 
-#Idempotancy
 if [ $? -ne 0 ]
-then 
-    echo "MySQL root passowrd is not setup, setting now"
-    mysql_secure_installation --set-root-pass ExpenseApp@1
-    VALIDATE $? "Setting up root password"
+then
+    echo "expense user not exist.. creating it"
+    useradd expense
+    VALIDATE $? "Creating expense user"
 else
-    echo -e "MySQL root passord is already setup.. $Y Skipping... $N"  &>>$LOG_FILE 
-fi
+    echo "expense user is already exist.. Skipping"
+
+fi 
+
+mkdir /app
+VALIDATE $? "Creating /app folder"
+
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+VALIDATE $? "Download backend application code"
+
+cd /app
+rm -rf /app/*
+unzip /tmp/backend.zip
+VALIDATE $? "Extracting backend application code"
+
+npm install
+
 
