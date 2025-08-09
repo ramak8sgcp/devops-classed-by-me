@@ -1,36 +1,36 @@
 #!/bin/bash
 
-LOGS_FOLDER="/var/log/shell-script"
+LOGS_FOLDER="/var/log/expense"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
-TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
 mkdir -p $LOGS_FOLDER
 
 USERID=$(id -u)
-
 R="\e[31m"
 G="\e[32m"
-Y="\e[33m"
 N="\e[0m"
+Y="\e[33m"
 
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
-    then 
-        echo "Please run this script with root priveleges"
+    then
+        echo -e "$R Please run this script with root priveleges $N" | tee -a $LOG_FILE
         exit 1
     fi
 }
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2 is ... $R FAILED $N" | tee -a $LOG_FILE
+        echo -e "$2 is...$R FAILED $N" | tee -a $LOG_FILE
         exit 1
     else
-        echo -e "$2 is ... $G SUCCESS $N" | tee -a $LOG_FILE
-    fi  
+        echo -e "$2 is...$G SUCCESS $N" | tee -a $LOG_FILE
+    fi
 }
 
-echo " script started executing at: $(date)" | tee -a $LOG_FILE
+echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
 CHECK_ROOT
 
@@ -38,20 +38,21 @@ dnf install mysql-server -y &>>$LOG_FILE
 VALIDATE $? "Installing MySQL server"
 
 systemctl enable mysqld &>>$LOG_FILE
-VALIDATE $? "enable MySQL server"
+VALIDATE $? "Enabled MySQL server"
 
 systemctl start mysqld &>>$LOG_FILE
-VALIDATE $? "start MySQL server"
+VALIDATE $? "Started MySQL server"
 
- &>>$LOG_FILE
-
-#Idempotancy
+mysql -h mysql.ramana3490.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
 if [ $? -ne 0 ]
-then 
-    echo "MySQL root passowrd is not setup, setting now"
-    mysql_secure_installation --set-root-pass ExpenseApp@1
+then    
+    echo "MySQL root password is not setup, setting now" &>>$LOG_FILE
+    mysql_secure_installation --set-root-pass ExpanseApp@1
     VALIDATE $? "Setting up root password"
-else
-    echo -e "MySQL root passord is already setup.. $Y Skipping... $N"  &>>$LOG_FILE 
+else    
+    echo -e "MySQL root password is already setup...$Y SKIPPING $N" | tee -a $LOG_FILE
 fi
 
+# Assignment
+# Check MySQL Server is installed or not, enabled or not, started or not
+# Implement the above this
