@@ -7,4 +7,4 @@
   tasks: 
   - name: Print the information
     ansible.builtin.debug:
-      mes: "Hi I am learing {{COURSE}},  Duration is: {{DURATION}}, and Trainer:{{TRAINER:}}"
+      mes: "Hi I am learing {{COURSE}},  Duration is: {{DURATION}}, and Trainer:{{TRAINER}}"
