@@ -9,7 +9,7 @@
   vars_prompt:
   - name: COURSE
     prompt: Please enter the course name
-    priavate: false 
+    private: false 
   tasks:
   - name: Print the information
     vars:
