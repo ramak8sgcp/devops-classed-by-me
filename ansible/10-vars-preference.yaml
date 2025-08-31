@@ -16,4 +16,4 @@
       COURSE: "Devops with AWS from Task level"
       DURATION: "110HRS"
     ansible.builtin.debug:
-      msg: "Hi I am learning {{COURSE}}, Duration {{DURATION}}"
+      msg: "Hi I am learning {{COURSE}}"
