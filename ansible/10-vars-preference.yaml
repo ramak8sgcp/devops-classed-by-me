@@ -11,9 +11,10 @@
     prompt: Please enter the course name
     private: false 
   tasks:
-  - name: Print the information
-    vars:
-      COURSE: "Devops with AWS from Task level"
-      DURATION: "110HRS"
-    ansible.builtin.debug:
-      msg: "Hi I am learning {{COURSE}}"
+    - name: print the information
+      vars:
+        COURSE: "DevOps with AWS from TASK level"
+      ansible.builtin.debug:
+        msg: "Hi, I am learning {{COURSE}}"
+
+  
