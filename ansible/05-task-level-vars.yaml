@@ -14,3 +14,6 @@
       TRAINER: "Lakshim Obulesu"
     ansible.builtin.debug:
       msg: "Hi I am a learing {{COURSE}}, Duration is: {{DURATION}}, Trainer:{{TRAINER}} "
+  - name: print the information again and again
+    ansible.builtin.debug:
+      msg: "Hi I am a learning {{COURSE}}, Duration is: {{DURATION}}, Trainer:{{TRAINER}} "
