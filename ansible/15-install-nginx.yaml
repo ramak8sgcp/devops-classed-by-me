@@ -6,7 +6,7 @@
     ansible.builtin.debug:
       msg: "{{ ansible_facts }}" 
   - name: install nginx if redhat
-    ansible.builtin.dnf:
+    ansible.builtin.:dnf
       name: nginx
       state: present
     when: ansible_os_family == "RedHat"

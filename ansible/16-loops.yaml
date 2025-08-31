@@ -1,0 +1,13 @@
+- name: loops demo 
+  hosts: local
+  connection: local 
+  tasks:
+  - name: Print names
+    ansible.builtin.debug:
+      msg: "Hello {{ item }}" # In loops each name is a item. Iteam is default reserved in Ansible.
+    
+    loop:
+    - Ramesh
+    - Suresh
+    - Robert
+    - Raheem 
