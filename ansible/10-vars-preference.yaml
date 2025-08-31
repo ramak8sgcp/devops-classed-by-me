@@ -4,12 +4,12 @@
     COURSE: "Devops with AWS from PLAY Level"
     TRAINER: "Ramana"
     DURATION: "120hrs"
-  vars_files:
-  - vars.yaml 
-  vars_prompt:
-  - name: COURSE
-    prompt: Please enter the course name
-    private: false 
+  # vars_files:
+  # - vars.yaml 
+  # vars_prompt:
+  # - name: COURSE
+  #   prompt: Please enter the course name
+  #   private: false 
   tasks:
     - name: print the information
       # vars:
