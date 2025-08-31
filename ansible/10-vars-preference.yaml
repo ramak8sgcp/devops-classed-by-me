@@ -1,7 +1,7 @@
 - name: variables to print
   hosts: web 
   vars:
-    COURSE: "Devops with AWS"
+    COURSE: "Devops with AWS from PLAY Level"
     TRAINER: "Ramana"
     DURATION: "120hrs"
   vars_files:
@@ -17,4 +17,3 @@
       DURATION: "110HRS"
     ansible.builtin.debug:
       msg: "Hi I am learning {{COURSE}}, Duration {{DURATION}}"
-      
