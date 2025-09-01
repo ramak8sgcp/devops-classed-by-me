@@ -5,4 +5,6 @@
   - name: Print the default variable 
     ansible.builtin.debug:
       msg: "Hello {{ course | default ('Ansible') }}" #If undefined variable then default can call the variable = Handling undefined variables
-      
+  - name: convert to uppercase
+    ansible.builtin.debug:
+      msg: "{{ greeting | upper }}"
