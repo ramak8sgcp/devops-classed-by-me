@@ -15,3 +15,9 @@
       greeting: "Hello Ramana"
     ansible.builtin.debug:
       msg: "{{ greeting | lower }}"
+  - name: convert to uppercase
+    vars: 
+      numbers: [ 1,2,3,2,54,5,2,4,2 ]
+    ansible.builtin.debug:
+      msg: "{{ numbers | unique }}"
+
