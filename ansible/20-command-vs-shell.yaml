@@ -16,4 +16,7 @@
   - name: check the passwd
     ansible.builtin.command: cat /etc/passwd 
     register: output 
+  - name: check the passwd
+    ansible.builtin.shell: cat /etc/passwd 
+    register: output 
     
