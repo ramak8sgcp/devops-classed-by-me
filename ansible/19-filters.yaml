@@ -21,8 +21,32 @@
     ansible.builtin.debug:
       msg: "{{ numbers | unique }}"
 
-  - name: get min and Max
-    vars: 
-      numbers: [ 1,2,3,2,54,5,2,4,2 ]
+  - name: get the min and max
+    vars:
+      numbers: [1,2,3,45,3,2]
     ansible.builtin.debug:
-      msg: "Mim {{numbers | mim  }} , Max {{ numbers | max }}"
+      msg: "Min: {{ numbers | min }}, Max: {{ numbers | max }}"
+
+  - name: convert map to list
+    vars:
+      course:
+        name: "DevOps with AWS"
+        duration: 120
+        trainer: "sivakumar reddy"
+    ansible.builtin.debug:
+      msg: "{{ course | dict2items }}"
+
+  - name: convert list to map
+    vars:
+      course:
+      - { "key": "name","value":"Devops with AWS" }
+      - { "key": "duration", "value":"120" }
+      - { "key": "trainer", "value":"sivakumar" }
+    ansible.builtin.debug:
+      msg: "{{ course | items2dict }}"
+
+  - name: check ip address
+    vars:
+      myip: 342.23.33.3
+    ansible.builtin.debug:
+      msg: "{{ myip | ansible.utils.ipv4 }}"
