@@ -12,3 +12,8 @@
   - name: check the process
     ansible.builtin.command: ps -ef | grep ssh 
     register: output 
+    
+  - name: check the passwd
+    ansible.builtin.command: cat /etc/passwd 
+    register: output 
+    
