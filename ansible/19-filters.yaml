@@ -10,14 +10,19 @@
       greeting: "Hello Ramana"
     ansible.builtin.debug:
       msg: "{{ greeting | upper }}"
-  - name: convert to uppercase
+  - name: convert to lower
     vars: 
       greeting: "Hello Ramana"
     ansible.builtin.debug:
       msg: "{{ greeting | lower }}"
-  - name: convert to uppercase
+  - name: convert to unique
     vars: 
       numbers: [ 1,2,3,2,54,5,2,4,2 ]
     ansible.builtin.debug:
       msg: "{{ numbers | unique }}"
 
+  - name: get min and Max
+    vars: 
+      numbers: [ 1,2,3,2,54,5,2,4,2 ]
+    ansible.builtin.debug:
+      msg: Mim "{{numbers | mim  }} , Max {{ numbers | max }}"
