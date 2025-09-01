@@ -27,7 +27,7 @@
     ansible.builtin.debug:
       msg: "Min: {{ numbers | min }}, Max: {{ numbers | max }}"
 
-  - name: convert map to list
+  - name: convert map/disctionary to list
     vars:
       course:
         name: "DevOps with AWS"
@@ -36,7 +36,7 @@
     ansible.builtin.debug:
       msg: "{{ course | dict2items }}"
 
-  - name: convert list to map
+  - name: convert list to map/disctionary
     vars:
       course:
       - { "key": "name","value":"Devops with AWS" }
@@ -47,6 +47,6 @@
 
   - name: check ip address
     vars:
-      myip: 342.23.33.3
+      myip: 32.23.33.3
     ansible.builtin.debug:
       msg: "{{ myip | ansible.utils.ipv4 }}"
