@@ -4,4 +4,5 @@
   tasks:
   - name: Print the default variable 
     ansible.builtin.debug:
-      msg: "Hello {{ course }}"
+      msg: "Hello {{ course | default ('Ansible') }}" #If undefined variable then default can call the variable = Handling undefined variables
+      
