@@ -30,14 +30,14 @@
     ansible.builtin.debug:
       msg: "{{ ec2_instance }}"
 
-  # - name: Create r53 private records
-  #   amazon.aws.route53:
-  #     state: present
-  #     zone: "{{ zone }}"
-  #     record: "{{ item.item }}.{{ zone }}"  # mysql.ramana3490.online
-  #     type: A
-  #     ttl: 1
-  #     value: "{{ item.instance[0].private_ip_address }}" 
-  #     wait: true
-  #     overwrite: true 
-  #   loop: "{{  }}"
+  - name: Create r53 private records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ zone }}"
+      record: "{{ item.item }}.{{ zone }}"  # mysql.ramana3490.online
+      type: A
+      ttl: 1
+      value: "{{ item.instance[0].private_ip_address }}" 
+      wait: true
+      overwrite: true 
+    loop: "{{ ec2_instance.results }}"
