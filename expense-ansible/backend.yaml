@@ -69,15 +69,8 @@
       state: restarted
       daemon_reload: true
       name: backend
-  - name: copy expense configuration 
-    ansible.builtin.copy:
-      src: expense.conf 
-      dest: /etc/nginx/default.d/expense.conf
+  
 
-  - name: restat nginx 
-    ansible.builtin.service:
-      name: nginx 
-      state: restarted 
-      
+
 
   
