@@ -48,7 +48,7 @@
     ansible.builtin.copy:
       src: backend.service
       dest: /etc/systemd/system/backend.service
-      
+
   - name: ansible to install pymysql
     ansible.builtin.pip:
       name: 
@@ -69,6 +69,15 @@
       state: restarted
       daemon_reload: true
       name: backend
+  - name: copy expense configuration 
+    ansible.builtin.copy:
+      src: expense.conf 
+      dest: /etc/nginx/default.d/expense.conf
 
+  - name: restat nginx 
+    ansible.builtin.service:
+      name: nginx 
+      state: restarted 
+      
 
   
