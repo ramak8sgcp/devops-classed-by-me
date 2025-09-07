@@ -28,9 +28,9 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 
-- name: copy expense configuration 
+- name: copy expense conf
   ansible.builtin.template:
-    src: expense.conf.j2 
+    src: expense.conf.j2
     dest: /etc/nginx/default.d/expense.conf
 
 - name: restat nginx 
