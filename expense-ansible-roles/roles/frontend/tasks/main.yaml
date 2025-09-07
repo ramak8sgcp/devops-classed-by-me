@@ -7,27 +7,31 @@
     name: nginx 
     state: started 
     enabled: yes 
-- name: remove html directory 
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent 
+# - name: remove html directory 
+#   ansible.builtin.file:
+#     path: /usr/share/nginx/html
+#     state: absent 
 
-- name: create html directory 
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
+# - name: create html directory 
+#   ansible.builtin.file:
+#     path: /usr/share/nginx/html
+#     state: directory
 
-- name: Download the frontend
-  ansible.builtin.get_url:
-    url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-    dest: /tmp/frontend.zip
+# - name: Download the frontend
+#   ansible.builtin.get_url:
+#     url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+#     dest: /tmp/frontend.zip
 
-- name: Extract the code 
-  ansible.builtin.unarchive:
-    src: /tmp/frontend.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes
-
+# - name: Extract the code 
+#   ansible.builtin.unarchive:
+#     src: /tmp/frontend.zip
+#     dest: /usr/share/nginx/html
+#     remote_src: yes
+- name: import tasks from common role 
+  ansible.builtin.import_role:
+      name: common
+      tasks_from: app-pre-req
+      
 - name: copy expense conf
   ansible.builtin.template:
     src: expense.conf.j2
@@ -35,7 +39,7 @@
   notify:
    - Restart nginx
 
-   
+
 # - name: restat nginx 
 #   ansible.builtin.service:
 #     name: nginx 
