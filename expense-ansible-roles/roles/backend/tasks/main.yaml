@@ -37,9 +37,9 @@
   args:
     chdir: /app 
 
-- name: Copi backend service 
-  ansible.builtin.copy:     #
-    src: backend.service
+- name: copy backend service  #copy only works for files without variables
+  ansible.builtin.template:
+    src: backend.service.j2
     dest: /etc/systemd/system/backend.service
 
 - name: ansible to install pymysql
