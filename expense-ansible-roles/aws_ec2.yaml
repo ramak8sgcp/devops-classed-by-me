@@ -2,11 +2,10 @@ plugin: amazon.aws.aws_ec2
 regions:
 - us-east-1
 filters:
-  # This selects only running instances with tag `Environment` tag set to `dev`.
   tag:Name: nginx
   instance-state-name : running
-  hostnames:
-    - private-ip-address
-  compose:
+hostnames:
+  - private-ip-address
+compose:
   # This sets the `ansible_host` variable to connect with the private IP address without changing the hostname.
   ansible_host: private_ip_address
